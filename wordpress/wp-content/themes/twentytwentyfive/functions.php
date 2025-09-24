@@ -156,3 +156,14 @@ if ( ! function_exists( 'twentytwentyfive_format_binding' ) ) :
 		}
 	}
 endif;
+add_action( 'init', function() {
+    register_block_pattern(
+        'twentytwentyfive/bootstrap-footer',
+        array(
+            'title'       => __( 'Bootstrap Footer', 'twentytwentyfive' ),
+            'description' => _x( 'Custom Bootstrap footer with quick links and social icons.', 'Pattern description', 'twentytwentyfive' ),
+            'content'     => file_get_contents( get_template_directory() . '/patterns/footer.php' ),
+            'categories'  => array( 'footer' ),
+        )
+    );
+});
