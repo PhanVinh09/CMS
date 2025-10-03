@@ -457,6 +457,7 @@ hr.styled-separator::after {
 a {
 	color: #cd2653;
 	text-decoration: underline;
+	width: 100%;
 }
 
 a:hover,
@@ -3678,14 +3679,70 @@ figure.wp-block-table.is-style-stripes {
 /* Alignment Classes ------------------------- */
 
 .entry-content>*:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
-	max-width: 58rem;
+	max-width: 90rem;
 	width: calc(100% - 4rem);
+	
 }
 
+/* bài viết */
+
 [class*="__inner-container"]>*:not(.alignwide):not(.alignfull):not(.alignleft):not(.alignright):not(.is-style-wide) {
-	max-width: 58rem;
-	width: 100%;
+	position: relative;
+	width: 1000px;
+	max-width: 90rem;
+	
+
 }
+
+.tdc-blogs-tb {
+	position: relative;
+	background: #fff !important;
+	box-shadow: 2px 4px 5px #c0bbbb !important;
+}
+
+.tdc-blogs-tb-img {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.tdc-blogs-image {
+	height: 100% !important;
+	overflow: hidden;
+}
+
+.tdc-blogs-image img {
+	height: 100% !important;
+	background-position: center !important;
+	background-size: cover !important;
+	background-repeat: no-repeat !important;
+	transition: 0.3s ease;
+}
+.tdc-blogs-image img:hover{
+	transform: scale(1.1);
+}
+
+.tdc-blogs-title {
+	font-size: 20px !important;
+}
+.tdc-blogs-title a{
+	text-decoration: none !important;
+}
+
+.tdc-blogs-content-main {
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+	height: 100px !important;
+}
+
+.tdc-blogs-content {
+	border: none !important;
+	padding: 0px !important;
+}
+
+/* .div.wp-block-column.is-layout-flow.wp-block-column-is-layout-flow {
+	flex-basis: 10% !important;
+} */
 
 .alignnone,
 .aligncenter,
@@ -5798,7 +5855,6 @@ a.to-the-top>* {
 		transform: scale(1.1);
 		text-decoration: none !important;
 	}
-
 
 	@media (min-width: 782px) {
 
