@@ -3706,6 +3706,11 @@ figure.wp-block-table.is-style-stripes {
 	align-items: center;
 }
 
+.tdc-blogs-month{
+	border: 1px solid #e5e7eb !important;
+	border-top: none !important;
+	border-left: none !important;
+}
 .tdc-blogs-image {
 	height: 100% !important;
 	overflow: hidden;
@@ -3729,6 +3734,12 @@ figure.wp-block-table.is-style-stripes {
 	text-decoration: none !important;
 }
 
+.tdc-blogs-cate{
+	margin: 0px !important;
+	padding: 0px !important;
+	gap: 0px !important;
+	transform: translateY(-10px) !important;
+}
 .tdc-blogs-content-main {
 	margin-top: 0px !important;
 	margin-bottom: 0px !important;
