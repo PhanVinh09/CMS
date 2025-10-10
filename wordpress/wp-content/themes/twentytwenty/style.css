@@ -127,7 +127,6 @@ html {
 }
 
 body {
-	background: #f5efe0;
 	box-sizing: border-box;
 	color: #000;
 	font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
@@ -5353,16 +5352,17 @@ a.to-the-top>* {
 		width: 8rem;
 	}
 
+	/* Phân trang */
 	/* SINGLE PAGINATION */
 
 	.pagination-single {
-		font-size: 2.4rem;
-		margin-top: 8rem;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.pagination-single-inner {
-		flex-direction: row;
-		justify-content: space-between;
+		flex-direction: column;
+		justify-content: left;
 	}
 
 	.pagination-single.only-next .pagination-single-inner {
@@ -5378,20 +5378,19 @@ a.to-the-top>* {
 	}
 
 	.pagination-single a+a {
-		margin: 0 0 0 4rem;
+		margin: 0;
 	}
 
 	.pagination-single a .arrow {
-		margin: 0 2rem 0 0;
+		margin: 0;
 	}
 
 	.pagination-single .next-post {
-		flex-direction: row-reverse;
-		text-align: right;
+		text-align: left;
 	}
 
 	.pagination-single .next-post .arrow {
-		margin: 0 0 0 2rem;
+		margin: 0;
 	}
 
 	/* Blocks -------------------------------- */
