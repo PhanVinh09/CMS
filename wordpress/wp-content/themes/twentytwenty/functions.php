@@ -868,3 +868,8 @@ function twentytwenty_header_widget_search_init()
 	));
 }
 add_action('widgets_init', 'twentytwenty_header_widget_search_init');
+// Bọc thêm div quanh textarea của comment form
+add_filter('comment_form_field_comment', function($field){
+    return '<div class="comment-textarea-wrap">'.$field.'</div>';
+});
+
