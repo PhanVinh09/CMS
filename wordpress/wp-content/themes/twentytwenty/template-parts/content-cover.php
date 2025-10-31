@@ -8,7 +8,6 @@
  */
 
 ?>
-
 <article <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 	<?php
 	// On the cover page template, output the cover header.
@@ -74,7 +73,7 @@
 										?>
 									</span>
 									<div class="entry-categories-inner">
-										<?php the_category( ' ' ); ?>
+										
 									</div><!-- .entry-categories-inner -->
 								</div><!-- .entry-categories -->
 
