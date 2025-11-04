@@ -7,7 +7,10 @@
  * @subpackage Twenty_Twenty
  * @since Twenty Twenty 1.0
  */
-
+// KHÔNG hiển thị trong trang bài viết chi tiết (single post)
+if ( is_singular( 'post' ) ) {
+	return;
+}
 if (has_post_thumbnail() && ! post_password_required()) {
 
 	$featured_media_inner_classes = '';

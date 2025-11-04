@@ -1053,6 +1053,7 @@ section {
 	/* background: #f7f7f7; */
 	border-radius: 5px;
 }
+
 .comment-textarea-wrap {
 	border: 1px solid rgba(0, 0, 0, .125);
 	width: 100%;
@@ -1065,7 +1066,7 @@ section {
 }
 
 .section-inner.small {
-	max-width: 80rem;
+	/* max-width: 80rem; */
 }
 
 .section-inner.medium {
@@ -2546,6 +2547,8 @@ body:not(.singular) main>article:first-of-type {
 
 h1.entry-title,
 h2.entry-title {
+	width: 850px;
+	font-size: 35px;
 	margin: 0;
 }
 
@@ -5331,7 +5334,7 @@ a.to-the-top>* {
 	/* SEARCH RESULTS */
 
 	.no-search-results-form {
-		background-color: #f5efe0; 
+		background-color: #f5efe0;
 		padding: 10px;
 	}
 
@@ -6827,7 +6830,7 @@ h2.entry-title {
 .featured-box-img {
 	position: relative;
 	height: 260px;
-    width: 380px;
+	width: 380px;
 	overflow: hidden;
 }
 
@@ -6867,17 +6870,29 @@ hr.styled-separator {
 	padding-top: 15px;
 }
 
+/* Dòng meta */
 .entry-meta-category {
-	position: absolute;
+	position: relative;
+	display: flex;
+	align-items: baseline;
+	gap: 6px;
+	transform: translate(600px) translateY(135px);
+	gap: 6px;
 	z-index: 10;
-	top: 140px;
-	right: 260px;
+
 }
+
+.entry-meta-category .meta-label {
+	white-space: nowrap;
+	color: #333;
+}
+
+
 
 .entry-date-box {
 	position: absolute;
 	top: 70px;
-    right: 410px;
+	right: 410px;
 	display: flex;
 	align-items: center;
 	background: #fff;
@@ -6920,4 +6935,116 @@ hr.styled-separator {
 	font-weight: 600;
 	color: #2563eb;
 	/* xanh sáng hơn */
+}
+
+/* Chi tiết Blog */
+/* ========== DATE BADGE (vàng tròn) ========== */
+.date-badge {
+	position: absolute;
+	/* đặt ở góc phải trên của tiêu đề */
+	top: 0;
+	right: 0;
+	width: 104px;
+	height: 104px;
+	border-radius: 50%;
+	background: #f2c500;
+	/* vàng */
+	box-shadow: 0 6px 16px rgba(0, 0, 0, .15);
+	display: grid;
+	place-items: center;
+	z-index: 2;
+	color: #1d1d1f;
+	font-weight: 700;
+}
+
+.date-badge__stack {
+	display: grid;
+	place-items: center;
+	line-height: 1;
+	transform: translateX(-8px);
+	/* đẩy khối day/month lệch trái để chừa chỗ cho năm */
+}
+
+.date-badge__day {
+	font-size: 16px;
+}
+
+.date-badge__month {
+	font-size: 16px;
+	opacity: .9;
+}
+
+.date-badge__divider {
+	width: 22px;
+	height: 1px;
+	background: rgba(0, 0, 0, .55);
+	margin: 2px 0;
+}
+
+.date-badge__year {
+	position: absolute;
+	right: 30px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 16px;
+	line-height: 1;
+	opacity: .9;
+}
+
+/* ========== CATEGORIES (đổi tên class) ========== */
+.post-meta-cats {
+	margin-top: 10px;
+}
+
+.post-meta-cats__label {
+	font-size: 13px;
+	text-transform: uppercase;
+	opacity: .7;
+	margin-right: 6px;
+}
+
+.post-meta-cats__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+}
+
+.post-meta-cats__list a {
+	display: inline-block;
+	padding: 4px 8px;
+	font-size: 13px;
+	line-height: 1;
+	border: 1px solid var(--global--color-border, #ddd);
+	border-radius: 3px;
+	text-decoration: none;
+}
+
+.post-meta-cats__list a:hover {
+	border-color: currentColor;
+}
+
+/* Tạo đường kẻ ngang dưới tiêu đề bài viết */
+/* ===== Đường kẻ tùy chỉnh dưới tiêu đề ===== */
+.custom-title-line {
+	width: 100%;
+	/* độ dài đường kẻ */
+	height: 2px;
+	/* độ dày */
+	background-color: #d3d3d3;
+	/* màu xám nhạt */
+	border: none;
+	margin: 42px 0px;
+	/* khoảng cách trên/dưới */
+	border-radius: 2px;
+}
+
+/* Nếu muốn mảnh hơn & trải dài hơn chút */
+.custom-title-line.long {
+	width: 100px;
+	opacity: 0.6;
+}
+
+/* Nếu muốn đường kẻ màu vàng (đồng bộ với badge ngày tháng) */
+.custom-title-line.yellow {
+	background-color: #f2c500;
 }

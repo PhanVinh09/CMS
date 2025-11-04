@@ -872,4 +872,11 @@ add_action('widgets_init', 'twentytwenty_header_widget_search_init');
 add_filter('comment_form_field_comment', function($field){
     return '<div class="comment-textarea-wrap">'.$field.'</div>';
 });
+// Ẩn featured image ở trang đơn bài viết (single post)
+add_filter( 'twentytwenty_can_show_post_thumbnail', function( $can_show ) {
+	if ( is_singular( 'post' ) ) {
+		return false;
+	}
+	return $can_show;
+} );
 
