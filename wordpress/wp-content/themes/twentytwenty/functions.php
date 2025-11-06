@@ -880,3 +880,24 @@ add_filter( 'twentytwenty_can_show_post_thumbnail', function( $can_show ) {
 	return $can_show;
 } );
 
+add_action('widgets_init', function () {
+  register_sidebar([
+    'name' => __('Archive Sidebar', 'twentytwenty-child'),
+    'id' => 'archive-sidebar',
+    'description' => __('Cột trái: Archive', 'twentytwenty-child'),
+    'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h2 class="widget-title heading-size-4">',
+    'after_title'   => '</h2>',
+  ]);
+
+  register_sidebar([
+    'name' => __('Comments Sidebar', 'twentytwenty-child'),
+    'id' => 'comments-sidebar',
+    'description' => __('Cột phải: Comments', 'twentytwenty-child'),
+    'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h2 class="widget-title heading-size-4">',
+    'after_title'   => '</h2>',
+  ]);
+});

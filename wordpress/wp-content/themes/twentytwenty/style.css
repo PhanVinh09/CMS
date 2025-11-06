@@ -2493,9 +2493,6 @@ body.template-full-width [class*="wp-block"].alignfull:not(.has-background) [cla
 
 /* Posts ------------------------------------- */
 
-body:not(.singular) main>article:first-of-type {
-	padding: 4rem 0 0;
-}
 
 
 /* Search Results ---------------------------- */
@@ -5326,11 +5323,6 @@ a.to-the-top>* {
 	.archive-title {
 		font-size: 3.2rem;
 	}
-
-	body:not(.singular) main>article:first-of-type {
-		padding: 8rem 0 0;
-	}
-
 	/* SEARCH RESULTS */
 
 	.no-search-results-form {
@@ -6812,11 +6804,11 @@ a.to-the-top>* {
 
 h2.entry-title {
 	position: absolute;
-	max-width: 400px;
+	max-width: 370px;
 	top: 70px;
 	right: 0px;
 	font-size: 25px;
-	z-index: 100;
+	z-index: 1;
 	text-align: left;
 	display: -webkit-box;
 	-webkit-line-clamp: 2;
@@ -6829,8 +6821,8 @@ h2.entry-title {
 
 .featured-box-img {
 	position: relative;
-	height: 260px;
-	width: 380px;
+	height: 250px;
+	width: 320px;
 	overflow: hidden;
 }
 
@@ -6849,11 +6841,11 @@ h2.entry-title {
 
 .featured-summary {
 	position: absolute;
-	width: 620px;
+	width: 500px;
 	bottom: 10px;
 	right: -5px;
 	font-size: 14px;
-	z-index: 100;
+	z-index: 1;
 	text-align: left;
 }
 
@@ -6875,8 +6867,7 @@ hr.styled-separator {
 	position: relative;
 	display: flex;
 	align-items: baseline;
-	gap: 6px;
-	transform: translate(600px) translateY(135px);
+	transform: translate(460px) translateY(135px);
 	gap: 6px;
 	z-index: 10;
 
@@ -6891,8 +6882,8 @@ hr.styled-separator {
 
 .entry-date-box {
 	position: absolute;
-	top: 70px;
-	right: 410px;
+	top: 80px;
+	right: 380px;
 	display: flex;
 	align-items: center;
 	background: #fff;
@@ -6901,11 +6892,12 @@ hr.styled-separator {
 	border-left: none !important;
 	padding: 10px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-	z-index: 100;
+	z-index: 1;
+	height: 75px;
 }
 
 .date-day {
-	font-size: 64px;
+	font-size: 34px;
 	font-weight: 700;
 	color: #1550d1;
 	/* xanh lam đậm */
@@ -6922,7 +6914,7 @@ hr.styled-separator {
 }
 
 .date-month {
-	font-size: 18px;
+	font-size: 10px;
 	text-transform: uppercase;
 	color: #6b7280;
 	/* xám */
@@ -6931,7 +6923,7 @@ hr.styled-separator {
 }
 
 .date-year {
-	font-size: 22px;
+	font-size: 20px;
 	font-weight: 600;
 	color: #2563eb;
 	/* xanh sáng hơn */
@@ -7048,3 +7040,6 @@ hr.styled-separator {
 .custom-title-line.yellow {
 	background-color: #f2c500;
 }
+
+
+
