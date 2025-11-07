@@ -269,7 +269,7 @@ get_header();
 
 	/* 5) Số thứ tự to bên trái (canh sát đầu dòng) */
 	.home-3cols__left .widget_recent_entries li::before {
-		top: 2px;
+		top: 10px;
 		/* thấp xuống chút cho cân */
 		left: 8px;
 		font-size: 24px;
