@@ -869,7 +869,101 @@ function twentytwenty_header_widget_search_init()
 }
 add_action('widgets_init', 'twentytwenty_header_widget_search_init');
 // Bọc thêm div quanh textarea của comment form
-add_filter('comment_form_field_comment', function($field){
-    return '<div class="comment-textarea-wrap">'.$field.'</div>';
+add_filter('comment_form_field_comment', function ($field) {
+	return '<div class="comment-textarea-wrap">' . $field . '</div>';
+});
+// Ẩn featured image ở trang đơn bài viết (single post)
+add_filter('twentytwenty_can_show_post_thumbnail', function ($can_show) {
+	if (is_singular('post')) {
+		return false;
+	}
+	return $can_show;
 });
 
+add_action('widgets_init', function () {
+	register_sidebar([
+		'name' => __('Archive Sidebar', 'twentytwenty-child'),
+		'id' => 'archive-sidebar',
+		'description' => __('Cột trái: Archive', 'twentytwenty-child'),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title heading-size-4">',
+		'after_title'   => '</h2>',
+	]);
+
+	register_sidebar([
+		'name' => __('Comments Sidebar', 'twentytwenty-child'),
+		'id' => 'comments-sidebar',
+		'description' => __('Cột phải: Comments', 'twentytwenty-child'),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title heading-size-4">',
+		'after_title'   => '</h2>',
+	]);
+	register_sidebar([
+		'name'          => __('Left Categories', 'twentytwenty-child'),
+		'id'            => 'left-categories',
+		'description'   => __('Cột trái: hiển thị Categories', 'twentytwenty-child'),
+		'before_widget' => '<section id="%1$s" class="widget %2$s"><div class="widget-content">',
+		'after_widget'  => '</div></section>',
+		'before_title'  => '<h2 class="widget-title heading-size-4">',
+		'after_title'   => '</h2>',
+	]);
+
+	register_sidebar([
+		'name'          => __('Right Recent Posts', 'twentytwenty-child'),
+		'id'            => 'right-recent-posts',
+		'description'   => __('Cột phải: hiển thị Bài viết mới', 'twentytwenty-child'),
+		'before_widget' => '<section id="%1$s" class="widget %2$s"><div class="widget-content">',
+		'after_widget'  => '</div></section>',
+		'before_title'  => '<h2 class="widget-title heading-size-4">',
+		'after_title'   => '</h2>',
+	]);
+});
+// Hiển thị tất cả bài viết khi có ?all=1 trên trang blog
+add_action('pre_get_posts', function (WP_Query $q) {
+	if (is_admin() || ! $q->is_main_query()) return;
+
+	// Áp dụng cho trang blog (Posts page) hoặc index bài viết
+	if (($q->is_home() || $q->is_post_type_archive('post')) && isset($_GET['all'])) {
+		$q->set('posts_per_page', -1);      // hoặc 9999 nếu sợ nặng
+		$q->set('ignore_sticky_posts', true);
+		$q->set('no_found_rows', true);     // tối ưu, bỏ tính tổng trang
+	}
+});
+// functions.php
+if ( ! function_exists('tt_latest_news_timeline') ) {
+  function tt_latest_news_timeline($count = 6, $title = 'Latest News'){
+    $q = new WP_Query([
+      'posts_per_page'      => intval($count),
+      'ignore_sticky_posts' => true,
+      'post_status'         => 'publish',
+      'orderby'             => 'date',
+      'order'               => 'DESC',
+    ]);
+    if ( ! $q->have_posts() ) return;
+
+    echo '<section class="latest-news">';
+    echo '<h3 class="latest-news__heading">'. esc_html($title) .'</h3>';
+    echo '<div class="latest-news__line"></div>';
+    echo '<ul class="latest-news__list">';
+
+    while ( $q->have_posts() ) {
+      $q->the_post();
+      echo '<li class="latest-news__item">';
+        echo '<span class="latest-news__dot" aria-hidden="true"></span>';
+        echo '<div class="latest-news__content">';
+          echo '<div class="latest-news__row">';
+            echo '<a class="latest-news__title" href="'. esc_url(get_permalink()) .'">'. esc_html(get_the_title()) .'</a>';
+            echo '<time class="latest-news__date" datetime="'. esc_attr(get_the_date('c')) .'">'. esc_html(get_the_date('j F, Y')) .'</time>';
+          echo '</div>';
+          echo '<p class="latest-news__excerpt">'. esc_html( wp_trim_words( get_the_excerpt(), 24, '…' ) ) .'</p>';
+        echo '</div>';
+      echo '</li>';
+    }
+    echo '</ul>';
+    echo '</section>';
+
+    wp_reset_postdata();
+  }
+}
