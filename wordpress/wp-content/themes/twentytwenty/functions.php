@@ -931,3 +931,39 @@ add_action('pre_get_posts', function (WP_Query $q) {
 		$q->set('no_found_rows', true);     // tối ưu, bỏ tính tổng trang
 	}
 });
+// functions.php
+if ( ! function_exists('tt_latest_news_timeline') ) {
+  function tt_latest_news_timeline($count = 6, $title = 'Latest News'){
+    $q = new WP_Query([
+      'posts_per_page'      => intval($count),
+      'ignore_sticky_posts' => true,
+      'post_status'         => 'publish',
+      'orderby'             => 'date',
+      'order'               => 'DESC',
+    ]);
+    if ( ! $q->have_posts() ) return;
+
+    echo '<section class="latest-news">';
+    echo '<h3 class="latest-news__heading">'. esc_html($title) .'</h3>';
+    echo '<div class="latest-news__line"></div>';
+    echo '<ul class="latest-news__list">';
+
+    while ( $q->have_posts() ) {
+      $q->the_post();
+      echo '<li class="latest-news__item">';
+        echo '<span class="latest-news__dot" aria-hidden="true"></span>';
+        echo '<div class="latest-news__content">';
+          echo '<div class="latest-news__row">';
+            echo '<a class="latest-news__title" href="'. esc_url(get_permalink()) .'">'. esc_html(get_the_title()) .'</a>';
+            echo '<time class="latest-news__date" datetime="'. esc_attr(get_the_date('c')) .'">'. esc_html(get_the_date('j F, Y')) .'</time>';
+          echo '</div>';
+          echo '<p class="latest-news__excerpt">'. esc_html( wp_trim_words( get_the_excerpt(), 24, '…' ) ) .'</p>';
+        echo '</div>';
+      echo '</li>';
+    }
+    echo '</ul>';
+    echo '</section>';
+
+    wp_reset_postdata();
+  }
+}

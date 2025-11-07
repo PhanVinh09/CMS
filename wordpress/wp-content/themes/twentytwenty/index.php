@@ -322,6 +322,122 @@ get_header();
 		list-style: none !important;
 		border: none !important;
 	}
+
+	/* last post */
+	/* ===== Latest News Timeline (middle column) ===== */
+	.latest-news {
+		position: relative;
+		margin: 10px 0 24px;
+		background: #fff;
+		border: 1px solid #ececec;
+		border-radius: 8px;
+		padding: 12px 16px;
+	}
+
+	.latest-news__heading {
+		margin: 0 0 8px;
+		font-size: 20px;
+		font-weight: 700;
+		color: #111;
+	}
+
+	/* đường timeline bên trái */
+	.latest-news__line {
+		position: absolute;
+		left: 63px;
+		top: 64px;
+		bottom: 16px;
+		width: 2px;
+		background: #e4e8f0;
+	}
+
+	.latest-news__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.latest-news__item {
+		position: relative;
+		padding: 10px 8px 12px 56px;
+		/* chừa chỗ cho dot + line */
+	}
+
+	.latest-news__item+.latest-news__item {
+		border-top: 1px solid #f0f2f6;
+	}
+
+	/* nút tròn */
+	.latest-news__dot {
+		position: absolute;
+		left: 20px;
+		top: 18px;
+		width: 16px;
+		height: 16px;
+		border: 3px solid #3b7ddd;
+		background: #fff;
+		border-radius: 50%;
+		box-shadow: 0 0 0 3px #ffffff;
+	}
+
+	/* hàng tiêu đề + ngày */
+	.latest-news__row {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: baseline;
+		gap: 10px;
+	}
+
+	.latest-news__title {
+		font-size: 16px;
+		font-weight: 700;
+		color: #1b66c9;
+		text-decoration: none;
+	}
+
+	.latest-news__title:hover {
+		text-decoration: underline;
+	}
+
+	.latest-news__date {
+		font-size: 14px;
+		color: #5b6b82;
+		white-space: nowrap;
+	}
+
+	.latest-news__excerpt {
+		margin: 6px 0 0;
+		color: #333;
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		.latest-news {
+			padding: 10px 12px;
+		}
+
+		.latest-news__line {
+			left: 24px;
+		}
+
+		.latest-news__item {
+			padding-left: 48px;
+		}
+
+		.latest-news__dot {
+			left: 16px;
+		}
+
+		.latest-news__row {
+			grid-template-columns: 1fr;
+		}
+
+		.latest-news__date {
+			order: 2;
+		}
+	}
 </style>
 <main id="site-content">
 
@@ -419,6 +535,13 @@ get_header();
 					</div>
 				<?php
 				}
+				// Hiển thị Last posts dạng timeline ở đầu cột giữa
+				// Chỉ hiển thị ở trang TÌM KIẾM
+				if (is_search()) {
+					tt_latest_news_timeline(6, 'Latest News');
+				}
+
+
 				?>
 			</main>
 
